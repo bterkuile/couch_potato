@@ -18,7 +18,7 @@ module CouchPotato
       def query_view!(parameters = {})
         update_view unless view_has_been_updated?
         begin
-          query_view parameters
+          query_view parameters.dup
         rescue RestClient::ResourceNotFound
           update_view
           retry

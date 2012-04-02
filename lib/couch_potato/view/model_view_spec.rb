@@ -133,7 +133,7 @@ module CouchPotato
       end
 
       def reduce_function
-        "_sum"
+        options[:reduce_function] || "_sum"
       end
 
       def process_results(results)

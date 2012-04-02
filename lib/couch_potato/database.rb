@@ -100,14 +100,14 @@ module CouchPotato
     alias_method :destroy, :destroy_document
 
     # loads a document by its id(s)
-    def load_document(id)
+    def load_document(id, options = {})
       raise "Can't load a document without an id (got nil)" if id.nil?
 
       if id.is_a?(Array)
         bulk_load id
       else
         begin
-          instance = couchrest_database.get(id)
+          instance = couchrest_database.get(id, options)
           instance.database = self
           instance
         rescue(RestClient::ResourceNotFound)

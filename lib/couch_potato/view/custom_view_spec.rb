@@ -6,11 +6,11 @@ module CouchPotato
     #   view :my_custom_view, :map => "function(doc) { emit(doc._id, null); }", :include_docs => true, :type => :custom, :reduce => nil
     class CustomViewSpec < BaseViewSpec
       def map_function
-        options[:map]
+        options[:map_function]
       end
       
       def reduce_function
-        options[:reduce]
+        options[:reduce_function]
       end
       
       def view_parameters

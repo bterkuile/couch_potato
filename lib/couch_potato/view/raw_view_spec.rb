@@ -10,7 +10,7 @@ module CouchPotato
     #   view :my_custom_view, :map => "function(doc) { emit(doc._id, null); }", :type => :raw, :results_filter => lambda{|results| results['rows].map{|row| row['value']}}
     class RawViewSpec < BaseViewSpec
       def map_function
-        options[:map]
+        options[:map_function]
       end
       
       def process_results(results)
@@ -18,7 +18,7 @@ module CouchPotato
       end
       
       def reduce_function
-        options[:reduce]
+        options[:reduce_function]
       end
     end
   end

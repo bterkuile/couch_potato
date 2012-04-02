@@ -70,6 +70,7 @@ module CouchPotato
         #    property :publisher, :type => Publisher
         #  end
         def property(name, options = {})
+          #return if property_names.include?(:name) # Do not declare double properties
           undefine_attribute_methods
           define_attribute_methods property_names + [name]
           properties << SimpleProperty.new(self, name, options)

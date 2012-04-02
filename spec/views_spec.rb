@@ -10,12 +10,12 @@ class Build
   view :count, :key => :time, :reduce => true
   view :minimal_timeline, :key => :time, :properties => [:state], :type => :properties
   view :key_array_timeline, :key => [:time, :state]
-  view :custom_timeline, :map => "function(doc) { emit(doc._id, {state: 'custom_' + doc.state}); }", :type => :custom
-  view :custom_timeline_returns_docs, :map => "function(doc) { emit(doc._id, null); }", :include_docs => true, :type => :custom
-  view :custom_with_reduce, :map => "function(doc) {if(doc.foreign_key) {emit(doc.foreign_key, 1);} else {emit(doc._id, 1)}}", :reduce => "function(key, values) {return({\"count\": sum(values)});}", :group => true, :type => :custom
-  view :custom_count_with_reduce, :map => "function(doc) {if(doc.foreign_key) {emit(doc.foreign_key, 1);} else {emit(doc._id, 1)}}", :reduce => "function(key, values) {return(sum(values));}", :group => true, :type => :custom
-  view :raw, :type => :raw, :map => "function(doc) {emit(doc._id, doc.state)}"
-  view :filtered_raw, :type => :raw, :map => "function(doc) {emit(doc._id, doc.state)}", :results_filter => lambda{|res| res['rows'].map{|row| row['value']}}
+  view :custom_timeline, :map_function => "function(doc) { emit(doc._id, {state: 'custom_' + doc.state}); }", :type => :custom
+  view :custom_timeline_returns_docs, :map_function => "function(doc) { emit(doc._id, null); }", :include_docs => true, :type => :custom
+  view :custom_with_reduce, :map_function => "function(doc) {if(doc.foreign_key) {emit(doc.foreign_key, 1);} else {emit(doc._id, 1)}}", :reduce_function => "function(key, values) {return({\"count\": sum(values)});}", :group => true, :type => :custom
+  view :custom_count_with_reduce, :map_function => "function(doc) {if(doc.foreign_key) {emit(doc.foreign_key, 1);} else {emit(doc._id, 1)}}", :reduce_function => "function(key, values) {return(sum(values));}", :group => true, :type => :custom
+  view :raw, :type => :raw, :map_function => "function(doc) {emit(doc._id, doc.state)}"
+  view :filtered_raw, :type => :raw, :map_function => "function(doc) {emit(doc._id, doc.state)}", :results_filter => lambda{|res| res['rows'].map{|row| row['value']}}
   view :with_view_options, :group => true, :key => :time
 end
 
