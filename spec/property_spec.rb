@@ -26,6 +26,13 @@ class CuckooClock < Watch
   property :cuckoo
 end
 
+class EnthousiasticProperties
+  include CouchPotato::Persistence
+
+  property :title
+  property :title, :type => Time
+end
+
 describe 'properties' do
   before(:all) do
     recreate_db
@@ -37,6 +44,10 @@ describe 'properties' do
 
   it "should allow me to overwrite write accessor and call super" do
     Watch.new(:overwritten_write => 1).overwritten_write.should == '1'
+  end
+
+  it "should not add properties twice" do
+    EnthousiasticProperties.property_names.should =~ EnthousiasticProperties.property_names.uniq
   end
 
   it "should return the property names" do
