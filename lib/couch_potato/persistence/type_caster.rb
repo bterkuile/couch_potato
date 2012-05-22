@@ -6,10 +6,10 @@ module CouchPotato
       def cast(value, type)
         if type == :boolean
           cast_boolean(value)
-        elsif type.instance_of?(Array)
+        elsif type.instance_of?(Array) || type == Array
           nested_type = type.first
           value.map { |val| cast_native(val, nested_type) } if value
-        elsif type.instance_of?(Hash)
+        elsif type.instance_of?(Hash) || type == Hash
           value
         else
           cast_native(value, type)
