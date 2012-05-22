@@ -105,7 +105,7 @@ module CouchPotato
     # returns either a single document or an array of documents (if an array of ids was passed).
     # returns nil if the single document could not be found. when passing an array and some documents
     # could not be found these are omitted from the returned array
-    def load_document(id)
+    def load_document(id, options = {})
       raise "Can't load a document without an id (got nil)" if id.nil?
 
       if id.is_a?(Array)
