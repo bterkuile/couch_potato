@@ -8,7 +8,8 @@ module CouchPotato
           cast_boolean(value)
         elsif type.instance_of?(Array) || type == Array
           nested_type = type.first
-          value.map { |val| cast_native(val, nested_type) } if value
+          #value.map { |val| cast_native(val, nested_type) } if value
+          value
         elsif type.instance_of?(Hash) || type == Hash
           value
         else
