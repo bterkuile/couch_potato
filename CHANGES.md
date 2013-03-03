@@ -1,5 +1,15 @@
 ## Changes
 
+### Current
+
+* adds `reload` method (Alexander Lang)
+* removes `total_rows` from database results (Alexander Lang)
+* changes `==` to use ids instead of comparing all attributes (orders of magnitude faster) ([Jochen Kramer](https://github.com/freetwix))
+
+### 0.7.1
+
+* fixes a bug when trying to bulk-load non-existant documents
+
 ### 0.7.0
 
 * ActiveSupport/Rails 3.2 compatibility  (Alexander Lang)
