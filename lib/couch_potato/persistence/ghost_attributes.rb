@@ -3,8 +3,6 @@ module CouchPotato
     def method_missing(name, *args)
       if(value = _document && _document[name.to_s])
         value
-      else
-        super if defined?(super)
       end
     end
   end
