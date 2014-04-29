@@ -4,7 +4,7 @@ module CouchPotato
       if(value = _document && _document[name.to_s])
         value
       else
-        super
+        super if defined?(super)
       end
     end
   end
