@@ -48,7 +48,11 @@ module CouchPotato
           elsif type == BigDecimal
             value.to_d unless value.blank?
           elsif type == Hash
-            value.to_hash unless value.blank?
+            if value.is_a?(String)
+              JSON.parse(value)
+            else
+              value.to_hash unless value.blank?
+            end
           elsif type == Time
             Time.parse value unless value.blank?
           elsif type == Date
